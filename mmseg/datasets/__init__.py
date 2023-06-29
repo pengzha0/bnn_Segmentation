@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-# yapf: disable
+# yapf: disabledataset
 from .ade import ADE20KDataset
 from .basesegdataset import BaseSegDataset
 from .chase_db1 import ChaseDB1Dataset
@@ -21,6 +21,7 @@ from .potsdam import PotsdamDataset
 from .refuge import REFUGEDataset
 from .stare import STAREDataset
 from .synapse import SynapseDataset
+from .my_custom import LesionDataset
 # yapf: disable
 from .transforms import (CLAHE, AdjustGamma, BioMedical3DPad,
                          BioMedical3DRandomCrop, BioMedical3DRandomFlip,
@@ -50,6 +51,6 @@ __all__ = [
     'DecathlonDataset', 'LIPDataset', 'ResizeShortestEdge',
     'BioMedicalGaussianNoise', 'BioMedicalGaussianBlur',
     'BioMedicalRandomGamma', 'BioMedical3DPad', 'RandomRotFlip',
-    'SynapseDataset', 'REFUGEDataset', 'MapillaryDataset_v1',
+    'SynapseDataset', 'LesionDataset' ,'REFUGEDataset', 'MapillaryDataset_v1',
     'MapillaryDataset_v2'
 ]
