@@ -20,7 +20,8 @@ class BNNConv2d(nn.Module):
         self.weight = nn.Parameter(torch.rand(*self.shape) * 0.001, requires_grad=True)
 
     def forward(self, x):
-        binary_input_no_grad = torch.sign(x)
+        # binary_input_no_grad = torch.sign(x)
+        binary_input_no_grad = x
         cliped_input = torch.clamp(x, -1.0, 1.0)
         x = binary_input_no_grad.detach() - cliped_input.detach() + cliped_input
 
