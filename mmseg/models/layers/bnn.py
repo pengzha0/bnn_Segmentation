@@ -25,11 +25,11 @@ class BNNConv2d(nn.Module):
         x = binary_input_no_grad.detach() - cliped_input.detach() + cliped_input
 
         real_weights = self.weight.view(self.shape)
-        # binary_weights_no_grad = torch.sign(real_weights)
-        # cliped_weights = torch.clamp(real_weights, -1.0, 1.0)
-        # binary_weights = binary_weights_no_grad.detach() - cliped_weights.detach() + cliped_weights
+        binary_weights_no_grad = torch.sign(real_weights)
+        cliped_weights = torch.clamp(real_weights, -1.0, 1.0)
+        binary_weights = binary_weights_no_grad.detach() - cliped_weights.detach() + cliped_weights
 
-        binary_weights = real_weights
+
         y = F.conv2d(x, binary_weights, stride=self.stride, padding=self.padding)
 
         return y

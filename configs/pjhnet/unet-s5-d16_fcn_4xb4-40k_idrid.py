@@ -25,4 +25,4 @@ model = dict(
         ),
     # model training and testing settings
     train_cfg=dict(),
-    test_cfg=dict(mode='whole',compute_aupr=True))
+    test_cfg=dict(mode='whole',compute_aupr=True,_delete_=True))

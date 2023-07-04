@@ -67,6 +67,6 @@ val_dataloader = dict(
             seg_map_path='label/test/annotations'),
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
-val_evaluator = dict(type='IoUMetric', iou_metrics=['mDice'])
+val_evaluator = dict(type='IoUMetric', iou_metrics=['mDice','mIoU','mFscore'])
 test_evaluator = val_evaluator
 
