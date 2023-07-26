@@ -6,7 +6,7 @@ rgb std:
  [80.20605713 41.23209693 13.29250962]
 """
 dataset_type = 'LesionDataset'
-data_root = '/home/zp/BNN/Seg/data/IDRID'
+data_root = '/scratch/project_2007361/IDRID'
 
 image_scale = (1440, 960)
 crop_size = (960, 1440)

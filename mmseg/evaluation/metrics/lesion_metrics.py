@@ -126,9 +126,6 @@ def sigmoid_metrics(results, gt_seg_maps, num_classes, compute_aupr=False):
     ppv_list = np.nan_to_num(total_tp_list / total_p_list, nan=1)
     s_list = np.nan_to_num(total_tp_list / (total_tp_list + total_fn_list), nan=0)
 
-    # print(ppv_list)
-    # print(s_list)
-
     if compute_aupr:
         for i in range(1, len(maupr)):
             x = s_list[:, i]
@@ -138,7 +135,7 @@ def sigmoid_metrics(results, gt_seg_maps, num_classes, compute_aupr=False):
     return total_p, total_tp, total_fn, maupr
 
 
-def metrics(results, gt_seg_maps, num_classes, ignore_index=None, nan_to_num=None):
+def Lesion_Metrics(results, gt_seg_maps, num_classes, ignore_index=None, nan_to_num=None):
     """
     :param results: feature map after sigmoid of softmax
     """
@@ -172,6 +169,7 @@ def metrics(results, gt_seg_maps, num_classes, ignore_index=None, nan_to_num=Non
 
 
 if __name__ == '__main__':
+    # test code
     shape = [3, 4]
     num_classes = 4  # include background
     num = 2
@@ -181,10 +179,6 @@ if __name__ == '__main__':
     pred = [(np.random.random([num_classes, shape[0], shape[1]]), use_sigmoid, aupr) for i in range(num)]
     label = [np.random.randint(0, num_classes + 1, shape) for i in range(num)]
 
-    res = metrics(pred, label, num_classes + 1)
-    for i in res: print(i)
-
-    # x = np.random.random(10)
-    # y = np.random.random(10)
-    # print(auc(x, y))
-    # print(roc_auc_score(x, y))
+    res = lesion_metrics(pred, label, num_classes + 1)
+    for i in res:
+        print(i)

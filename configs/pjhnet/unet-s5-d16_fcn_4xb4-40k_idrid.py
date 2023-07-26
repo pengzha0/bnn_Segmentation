@@ -18,11 +18,23 @@ model = dict(
     pretrained=None,
     data_preprocessor=data_preprocessor,
     decode_head=dict(
+        type='FCNHead',
+        in_channels=64,
+        in_index=4,
+        channels=64,
+        num_convs=1,
+        concat_input=False,
+        dropout_ratio=0.1,
         num_classes=5,
-    ),
+        align_corners=False,
+        loss_decode=dict(
+            type='BinaryLoss', use_sigmoid=False, loss_weight=1.0)),
     auxiliary_head=dict(
+        type='FCNHead',
         num_classes=5,
-        ),
+        align_corners=False,
+        loss_decode=dict(
+            type='BinaryLoss', use_sigmoid=False, loss_weight=0.4)),
     # model training and testing settings
     train_cfg=dict(),
     test_cfg=dict(mode='whole',compute_aupr=True,_delete_=True))

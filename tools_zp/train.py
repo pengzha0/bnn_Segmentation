@@ -46,7 +46,7 @@ def parse_args():
     parser.add_argument('--local_rank', '--local-rank', type=int, default=0)
 
     params = [
-        "configs/pjhnet/unet-s5-d16_fcn_4xb4-40k_idrid_bnn.py",
+        "/scratch/project_2004772/medical_BNN/bnn_Segmentation/configs/pjhnet/unet-s5-d16_fcn_4xb4-40k_idrid.py",
         '--work-dir',"work_dir"
     ]
     args = parser.parse_args(params)

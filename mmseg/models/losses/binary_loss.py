@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from .utils import weight_reduce_loss
-from ..builder import LOSSES
+from mmseg.registry import MODELS
 
 
 def _make_one_hot(gt, num_classes, ignore=0):
@@ -127,7 +127,7 @@ def binary_loss(pred_raw,
     return loss
 
 
-@LOSSES.register_module()
+@MODELS.register_module()
 class BinaryLoss(nn.Module):
     def __init__(self,
                  loss_type='ce',
@@ -136,6 +136,7 @@ class BinaryLoss(nn.Module):
                  class_weight_norm=False,
                  loss_weight=1.0,
                  smooth=1.0,
+                 loss_name: str = 'loss_ce',
                  **kwargs):
         super(BinaryLoss, self).__init__()
         assert loss_type in ['ce', 'dice', 'cbce', 'ce_dice', 'mix']
@@ -145,6 +146,7 @@ class BinaryLoss(nn.Module):
         self.class_weight_norm = class_weight_norm
         self.loss_type = loss_type
         self.smooth = smooth
+        self.loss_name_ = loss_name
 
     def forward(self,
                 cls_score,
@@ -188,3 +190,6 @@ class BinaryLoss(nn.Module):
             smooth=self.smooth
         )
         return loss_cls
+    @property
+    def loss_name(self):
+        return self.loss_name_
